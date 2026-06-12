@@ -144,9 +144,12 @@ export default function Home() {
             <div className="prod-grid">
               {filteredProds.map(p => (
                 <div key={p.id} className={`card${selProd.id === p.id ? ' selected' : ''}`} onClick={() => selectProduct(p)}>
-                  <div style={{ height:130, display:'flex', alignItems:'center', justifyContent:'center', background:'var(--dark-3)', fontSize:40, position:'relative', flexDirection:'column' }}>
-                    {p.emoji}
-                    {p.badge && <span className="badge" style={{ position:'absolute', top:8, right:8 }}>{p.badge}</span>}
+                  <div style={{ height:150, display:'flex', alignItems:'center', justifyContent:'center', background:'var(--dark-3)', fontSize:40, position:'relative', flexDirection:'column', overflow:'hidden' }}>
+                    {p.img
+                      ? <img src={p.img} alt={p.name} style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'center' }} />
+                      : <span>{p.emoji}</span>
+                    }
+                    {p.badge && <span className="badge" style={{ position:'absolute', top:8, right:8, zIndex:1 }}>{p.badge}</span>}
                   </div>
                   <div style={{ padding:12 }}>
                     <div style={{ fontSize:13, fontWeight:500, marginBottom:3 }}>{p.name}</div>
